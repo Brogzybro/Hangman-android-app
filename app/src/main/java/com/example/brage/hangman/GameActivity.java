@@ -79,7 +79,6 @@ public class GameActivity extends AppCompatActivity{
             String word = bufferedReader.readLine();
 
             while(word != null){
-                Log.i("WORD WOTD", word);
                 listOFWords.add(word);
                 word = bufferedReader.readLine();
             }
@@ -112,7 +111,6 @@ public class GameActivity extends AppCompatActivity{
         selected = selected.trim();
         selected = selected.toLowerCase();
         Character selectedChar = selected.charAt(0);
-        Log.i("--------", selected);
         view.setVisibility(View.INVISIBLE);
         if (wordOfTheGame.indexOf(selectedChar) >= 0){ //Character is in the word!
 
@@ -134,7 +132,6 @@ public class GameActivity extends AppCompatActivity{
 
     private void setWordOfGameTV(){
         wordOfTheGame = selectRandomWord();
-        Log.i("WOTG---", wordOfTheGame);
         updateWordOfTheGameTV();
     }
 
@@ -158,12 +155,10 @@ public class GameActivity extends AppCompatActivity{
                 isWon = false;
             }
         }
-        Log.i("updateWOTD------", out);
         wordOfGameTV.setText(out);
         if (isWon){
             // GameWon
             gameWon();
-            Log.i("----YAY----", "Game Won!");
         }
     }
 
