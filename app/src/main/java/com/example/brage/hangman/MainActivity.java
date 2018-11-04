@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         radioGroup = (RadioGroup)findViewById(R.id.radioGroup);
-
     }
 
     DialogInterface.OnClickListener dialogListener = new DialogInterface.OnClickListener() {
@@ -54,14 +53,15 @@ public class MainActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.popup_help, null);
         TextView helpText = (TextView)popupView.findViewById(R.id.helpTextTV);
+        TextView helpTitle = (TextView)popupView.findViewById(R.id.helpTitleTV);
 
         if (radioGroup.getCheckedRadioButtonId() == R.id.radioEng){
             helpText.setText(getResources().getString(R.string.help_eng));
+            helpTitle.setText(getResources().getString(R.string.heltTitle_eng));
         }
 
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int heiht = LinearLayout.LayoutParams.WRAP_CONTENT;
-        int text = R.string.help_nor;
         boolean focusable = true;
         final PopupWindow popupWindow = new PopupWindow(popupView, width, heiht, focusable);
 

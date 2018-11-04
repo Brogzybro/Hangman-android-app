@@ -13,6 +13,16 @@
         tools:layout_editor_absoluteY="0dp">
 
         <TextView
+            android:id="@+id/helpTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/heltTitle_nor"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/helpTextTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,6 +31,8 @@
             android:text="@string/help_nor"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
+
+
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

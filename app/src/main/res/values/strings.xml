@@ -5,8 +5,11 @@
     <string name="norsk">Norsk</string>
     <string name="english">English</string>
 
-    <string name="help_nor">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis ligula fermentum, porttitor nisi ac, mollis magna. Nunc lectus ligula, molestie in ligula vitae, tristique mattis nisl. Praesent vestibulum tortor non mauris vehicula, ut suscipit mauris eleifend. Suspendisse laoreet felis ipsum, sit amet porttitor mauris commodo ut.  </string>
-    <string name="help_eng">Gameinstructions in English</string>
+    <string name="heltTitle_nor">Spill instruksjoner</string>
+    <string name="heltTitle_eng">Game instructions</string>
+
+    <string name="help_nor">Hangman går ut på å gjette bokstaver til et ord. Du vil se hvor mange bokstar det er i ordet til en hver tid. Når du gjetter en bokstav som er i ordet vil du se hvor bokstaven er plassert. Dersom en bokstav er brukt flere ganger i ordet vil du se alle plassene bokstaven blir brukt når du gjetter bokstaven. For hver bokstav du gjetter feil vil det bli tegnet nye streker som til slutt ender med at strekfiguren blir hengt. Gjett rett ord, du vinner. Gjett feil for mange ganger, du taper!</string>
+    <string name="help_eng">Hangman is played by guessing letter to a word. You will be able to see how many letters there are in the word at all times. Once you guess a letter that is in the word, you will  see where in the word that letter is placed. If one letter is used multiple times in the word you it will show all places where the letter is used once you guess the letter. For every wrong letter guessed there will be drawn something new that will add up to a stickman getting hanged. Guess the right word, you win. Guess wrong letter too many time, you loose!</string>
 
     <string name="wins_nor">Vunnet:</string>
     <string name="wins_eng">Wins:</string>
