@@ -29,7 +29,7 @@
         <item>@string/help_eng</item>
     </string-array>
 
-    <integer-array name="bgList">
+    <integer-array name="bgList0">
         <item>@drawable/game0</item>
         <item>@drawable/game1</item>
         <item>@drawable/game2</item>
@@ -41,5 +41,19 @@
         <item>@drawable/game8</item>
         <item>@drawable/game9</item>
         <item>@drawable/game10</item>
+    </integer-array>
+
+    <integer-array name="bgList1">
+        <item>@drawable/a_game0</item>
+        <item>@drawable/a_game1</item>
+        <item>@drawable/a_game2</item>
+        <item>@drawable/a_game3</item>
+        <item>@drawable/a_game4</item>
+        <item>@drawable/a_game5</item>
+        <item>@drawable/a_game6</item>
+        <item>@drawable/a_game7</item>
+        <item>@drawable/a_game8</item>
+        <item>@drawable/a_game9</item>
+        <item>@drawable/a_game10</item>
     </integer-array>
 </resources>

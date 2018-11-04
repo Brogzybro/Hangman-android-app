@@ -20,6 +20,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private RadioGroup radioGroup;
+    private int gameModeSelected = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("language", selectedId);
+        intent.putExtra("gameMode", gameModeSelected);
         startActivity(intent);
     }
 
@@ -92,11 +94,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeGameMode(View view){
         if (view.getId() == R.id.mode1Btn){
+            gameModeSelected = 1;
             view.setBackground(getDrawable(R.drawable.game_mode_1_s));
             Button buttonNotPressed = (Button)findViewById(R.id.mode0Btn);
             buttonNotPressed.setBackground(getDrawable(R.drawable.game_mode_0));
         }else{
-            view.setBackground(getDrawable(R.drawable.game_mode_1_s));
+            gameModeSelected = 0;
+            view.setBackground(getDrawable(R.drawable.game_mode_0_s));
             Button buttonNotPressed = (Button)findViewById(R.id.mode1Btn);
             buttonNotPressed.setBackground(getDrawable(R.drawable.game_mode_1));
         }

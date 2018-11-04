@@ -2,3 +2,9 @@ house
 sidewalk
 school
 university
+chicken
+breadcrumb
+microwave
+toiletseat
+computer
+kitchen

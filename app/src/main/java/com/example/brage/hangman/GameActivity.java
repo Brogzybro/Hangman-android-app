@@ -1,6 +1,7 @@
 package com.example.brage.hangman;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -46,7 +47,12 @@ public class GameActivity extends AppCompatActivity{
         numberOfGameWins = (TextView)findViewById(R.id.numerOfWins);
         numberOfGameLoss = (TextView)findViewById(R.id.numerOfLoss);
         nextGameBtn = (Button)findViewById(R.id.nextGameBtn);
-        backgrounds = getResources().obtainTypedArray(R.array.bgList);
+        if (intent.getIntExtra("gameMode", 0) == 1){
+            backgrounds = getResources().obtainTypedArray(R.array.bgList1);
+        }else{
+            backgrounds = getResources().obtainTypedArray(R.array.bgList0);
+        }
+        background.setImageResource(backgrounds.getResourceId(numberOfFailes, 0));
         readFromFile();
         setWordOfGameTV();
     }
@@ -87,6 +93,10 @@ public class GameActivity extends AppCompatActivity{
 
     private String selectRandomWord(){
         Random random = new Random();
+        if (listOFWords.size() == 0){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("There are no more words to play :(").setPositiveButton("Ok!", dialogListener).show();
+        }
         int randomInt = random.nextInt(listOFWords.size());
         String word = listOFWords.get(randomInt);
         return word;
@@ -207,5 +217,17 @@ public class GameActivity extends AppCompatActivity{
             letterBtn.setEnabled(enable);
         }
     }
+
+    DialogInterface.OnClickListener dialogListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            switch (which) {
+                case DialogInterface.BUTTON_POSITIVE:
+                    finish();
+                    break;
+            }
+
+        }
+    };
 
 }
