@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
@@ -87,5 +88,17 @@ public class MainActivity extends AppCompatActivity {
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(message).setPositiveButton(yes, dialogListener).setNegativeButton(no, dialogListener).show();
+    }
+
+    public void changeGameMode(View view){
+        if (view.getId() == R.id.mode1Btn){
+            view.setBackground(getDrawable(R.drawable.game_mode_1_s));
+            Button buttonNotPressed = (Button)findViewById(R.id.mode0Btn);
+            buttonNotPressed.setBackground(getDrawable(R.drawable.game_mode_0));
+        }else{
+            view.setBackground(getDrawable(R.drawable.game_mode_1_s));
+            Button buttonNotPressed = (Button)findViewById(R.id.mode1Btn);
+            buttonNotPressed.setBackground(getDrawable(R.drawable.game_mode_1));
+        }
     }
 }
