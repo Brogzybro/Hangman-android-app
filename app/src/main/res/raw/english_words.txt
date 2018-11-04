@@ -1,0 +1,4 @@
+house
+sidewalk
+school
+university

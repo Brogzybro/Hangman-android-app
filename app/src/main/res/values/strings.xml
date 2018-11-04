@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Hangman</string>
+    <string name="start_game">Start Game</string>
+
+    <string name="norsk">Norsk</string>
+    <string name="english">English</string>
+
+    <string name="help_nor">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis ligula fermentum, porttitor nisi ac, mollis magna. Nunc lectus ligula, molestie in ligula vitae, tristique mattis nisl. Praesent vestibulum tortor non mauris vehicula, ut suscipit mauris eleifend. Suspendisse laoreet felis ipsum, sit amet porttitor mauris commodo ut.  </string>
+    <string name="help_eng">Gameinstructions in English</string>
+
+    <string name="wins_nor">Vunnet:</string>
+    <string name="wins_eng">Wins:</string>
+    <string name="loss_nor">Tapt:</string>
+    <string name="loss_eng">Loss:</string>
+
+    <string name="exit_nor">Vil du lukke spillet?</string>
+    <string name="exit_eng">Do you want to exit the game?</string>
+
+    <string name="yes_nor">Ja.</string>
+    <string name="yes_eng">Yes.</string>
+    <string name="no_nor">Nei.</string>
+    <string name="no_eng">No.</string>
+
+    <string-array name="help">
+        <item>@string/help_nor</item>
+        <item>@string/help_eng</item>
+    </string-array>
+
+    <integer-array name="bgList">
+        <item>@drawable/game0</item>
+        <item>@drawable/game1</item>
+        <item>@drawable/game2</item>
+        <item>@drawable/game3</item>
+        <item>@drawable/game4</item>
+        <item>@drawable/game5</item>
+        <item>@drawable/game6</item>
+        <item>@drawable/game7</item>
+        <item>@drawable/game8</item>
+        <item>@drawable/game9</item>
+        <item>@drawable/game10</item>
+    </integer-array>
+</resources>
