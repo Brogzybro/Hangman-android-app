@@ -24,6 +24,9 @@
     <string name="no_nor">Nei.</string>
     <string name="no_eng">No.</string>
 
+    <string name="next_nor">Neste ord</string>
+    <string name="next_eng">Next word</string>
+
     <string-array name="help">
         <item>@string/help_nor</item>
         <item>@string/help_eng</item>

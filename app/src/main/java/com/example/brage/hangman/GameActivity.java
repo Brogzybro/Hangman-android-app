@@ -4,9 +4,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -72,6 +77,7 @@ public class GameActivity extends AppCompatActivity{
             TextView lossTV = (TextView)findViewById(R.id.loss);
             winsTV.setText(getResources().getString(R.string.wins_eng));
             lossTV.setText(getResources().getString(R.string.loss_eng));
+            nextGameBtn.setText(getResources().getString(R.string.next_eng));
         }
         try{
             InputStream is = getResources().openRawResource(fileId);
@@ -96,10 +102,10 @@ public class GameActivity extends AppCompatActivity{
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("There are no more words to play :(").setPositiveButton("Ok!", dialogListener).show();
         }
-        int randomInt = random.nextInt(listOFWords.size());
-        String word = listOFWords.get(randomInt);
+    int randomInt = random.nextInt(listOFWords.size());
+    String word = listOFWords.get(randomInt);
         return word;
-    }
+}
 
     private void removeWordFromList(String word){
         listOFWords.remove(word);
@@ -115,7 +121,7 @@ public class GameActivity extends AppCompatActivity{
         if (wordOfTheGame.indexOf(selectedChar) >= 0){ //Character is in the word!
 
             listOfGuessedLetters.add(selectedChar);
-            updateWordOfTheGameTV();
+            updateWordOfTheGameTV(false);
 
         }else{
             numberOfFailes++;
@@ -132,11 +138,12 @@ public class GameActivity extends AppCompatActivity{
 
     private void setWordOfGameTV(){
         wordOfTheGame = selectRandomWord();
-        updateWordOfTheGameTV();
+        updateWordOfTheGameTV(false);
     }
 
-    private void updateWordOfTheGameTV(){
+    private void updateWordOfTheGameTV(boolean gameIsOver){
         String out = "";
+        SpannableStringBuilder builder = new SpannableStringBuilder();
         boolean isWon = true;
         for (int i = 0; i < wordOfTheGame.length(); i++) {
             Character wotdCharI = wordOfTheGame.charAt(i);
@@ -144,18 +151,28 @@ public class GameActivity extends AppCompatActivity{
 
             for (int j = 0; j < listOfGuessedLetters.size(); j++) {
                 if (listOfGuessedLetters.get(j).equals(wotdCharI)){
-
                     isGuessed = true;
                 }
             }
             if (isGuessed){
                 out += wotdCharI +" ";
+                SpannableString guessedLetter = new SpannableString(wotdCharI +" ");
+                builder.append(guessedLetter);
+
             }else{
+                SpannableString notGuessed;
+                if (gameIsOver){
+                    notGuessed = new SpannableString(wotdCharI +" ");
+                    notGuessed.setSpan(new ForegroundColorSpan(Color.RED), 0, notGuessed.length(), 0);
+                }else{
+                    notGuessed = new SpannableString("_ ");
+                }
+                builder.append(notGuessed);
                 out += "_ ";
                 isWon = false;
             }
         }
-        wordOfGameTV.setText(out);
+        wordOfGameTV.setText(builder, TextView.BufferType.SPANNABLE);
         if (isWon){
             // GameWon
             gameWon();
@@ -173,6 +190,7 @@ public class GameActivity extends AppCompatActivity{
         int numberOfCurrentLoss = Integer.parseInt(numberOfGameLoss.getText().toString());
         numberOfCurrentLoss ++;
         numberOfGameLoss.setText("" + numberOfCurrentLoss);
+        updateWordOfTheGameTV(true);
         gameFinnished();
     }
 

@@ -97,16 +97,15 @@
 
     <Button
         android:id="@+id/nextGameBtn"
-        android:layout_width="116dp"
-        android:layout_height="70dp"
-        android:layout_marginBottom="48dp"
-        android:layout_marginStart="132dp"
-        android:background="@drawable/next_game5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fadingEdge="horizontal|vertical"
         android:onClick="onNextGameBtnClick"
+        android:text="@string/next_nor"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/button1"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/gameBg"
+        app:layout_constraintStart_toEndOf="@+id/gameBg" />
 
     <Button
         android:id="@+id/button0"
