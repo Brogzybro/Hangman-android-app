@@ -31,26 +31,35 @@ public class SetWordActivity extends AppCompatActivity {
             TextView setWordHelp = (TextView) findViewById(R.id.setWordHelpText);
             TextView yourWordTV = (TextView) findViewById(R.id.yourWordTV);
             TextView wirteHereTV = (TextView) findViewById(R.id.writeHereTV);
+            TextView wrongInputTV = (TextView) findViewById(R.id.wrongInputTV);
             setWordHelp.setText(getText(R.string.setWordDesc_eng));
             yourWordTV.setText(getText(R.string.setWordInputPreset_eng));
             wirteHereTV.setText(getText(R.string.writeHere_eng));
+            wrongInputTV.setText(getText(R.string.wrongInput_eng));
         }
     }
 
     public void onOKBtnClick(View view){
-        int language = intent.getIntExtra("language", R.id.radioNor);
-        int gamemode = intent.getIntExtra("gameMode", 0);
         TextView yourWord = (TextView)findViewById(R.id.yourWordTV);
         String word = yourWord.getText().toString();
-        word = fixWord(word);
-        Intent intentStart = new Intent(this, GameActivity.class);
-        intentStart.putExtra("language", language);
-        intentStart.putExtra("gameMode", gamemode);
-        intentStart.putExtra("twoPlayers", true);
-        intentStart.putExtra("word", word);
-        intentStart.putExtra("wins", antWins);
-        intentStart.putExtra("loss", antLoss);
-        startActivityForResult(intentStart, 1);
+
+        if (word.contains(" ")){
+            TextView wrongInputTV = (TextView) findViewById(R.id.wrongInputTV);
+            wrongInputTV.setVisibility(View.VISIBLE);
+        }else{
+            int language = intent.getIntExtra("language", R.id.radioNor);
+            int gamemode = intent.getIntExtra("gameMode", 0);
+
+            word = fixWord(word);
+            Intent intentStart = new Intent(this, GameActivity.class);
+            intentStart.putExtra("language", language);
+            intentStart.putExtra("gameMode", gamemode);
+            intentStart.putExtra("twoPlayers", true);
+            intentStart.putExtra("word", word);
+            intentStart.putExtra("wins", antWins);
+            intentStart.putExtra("loss", antLoss);
+            startActivityForResult(intentStart, 1);
+        }
     }
 
     @Override

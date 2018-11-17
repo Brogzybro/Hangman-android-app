@@ -42,6 +42,9 @@
     <string name="writeHere_nor">Skriv her: </string>
     <string name="writeHere_eng">Write here: </string>
 
+    <string name="wrongInput_nor">Skriv in bere eit ord!</string>
+    <string name="wrongInput_eng">Write just one word!</string>
+
     <string-array name="help">
         <item>@string/help_nor</item>
         <item>@string/help_eng</item>
