@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Debug;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
@@ -29,6 +30,7 @@ public class GameActivity extends AppCompatActivity{
     private ArrayList<String> listOFWords = new ArrayList();
     private ArrayList<Character> listOfGuessedLetters = new ArrayList<>(); //List of correct guessed letters
     private Intent intent;
+    private int RESULT;
     private ImageView background;
     private TypedArray backgrounds;
     private String wordOfTheGame= "";
@@ -39,6 +41,9 @@ public class GameActivity extends AppCompatActivity{
     private Button nextGameBtn;
     private int numberOfFailes = 0; // number of failed guesses this round
     private int numberOfLetters = 29;
+    private int fileId;
+
+    private boolean isTwoPlayers = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,33 +57,32 @@ public class GameActivity extends AppCompatActivity{
         numberOfGameWins = (TextView)findViewById(R.id.numerOfWins);
         numberOfGameLoss = (TextView)findViewById(R.id.numerOfLoss);
         nextGameBtn = (Button)findViewById(R.id.nextGameBtn);
+        setTextLanguage();
         if (intent.getIntExtra("gameMode", 0) == 1){
             backgrounds = getResources().obtainTypedArray(R.array.bgList1);
         }else{
             backgrounds = getResources().obtainTypedArray(R.array.bgList0);
         }
+        if (intent.getBooleanExtra("twoPlayers", false)){ // if its two players
+            isTwoPlayers = true;
+            wordOfTheGame = intent.getStringExtra("word");
+            int wins = intent.getIntExtra("wins",0);
+            int loss = intent.getIntExtra("loss", 0);
+            numberOfGameWins.setText(wins + "");
+            numberOfGameLoss.setText(loss + "");
+            updateWordOfTheGameTV(false);
+        }else{
+            readFromFile();
+            setWordOfGameTV();
+        }
         background.setImageResource(backgrounds.getResourceId(numberOfFailes, 0));
-        readFromFile();
-        setWordOfGameTV();
+
+
     }
 
     private boolean readFromFile(){
-        int gottenId = intent.getIntExtra("language", R.id.radioNor);
-        int fileId = R.raw.norwegian_words;
-        if (gottenId == R.id.radioEng){
-            fileId = R.raw.english_words;
-            numberOfLetters = 27;
-            for (int i = 26; i <29 ; i++) {
-                int id = getResources().getIdentifier("button"+i, "id", getPackageName());
-                Button letterBtn = (Button)findViewById(id);
-                letterBtn.setVisibility(View.INVISIBLE);
-            }
-            TextView winsTV = (TextView)findViewById(R.id.wins);
-            TextView lossTV = (TextView)findViewById(R.id.loss);
-            winsTV.setText(getResources().getString(R.string.wins_eng));
-            lossTV.setText(getResources().getString(R.string.loss_eng));
-            nextGameBtn.setText(getResources().getString(R.string.next_eng));
-        }
+
+
         try{
             InputStream is = getResources().openRawResource(fileId);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
@@ -96,6 +100,25 @@ public class GameActivity extends AppCompatActivity{
         return true;
     }
 
+    private void setTextLanguage(){
+        int gottenId = intent.getIntExtra("language", R.id.radioNor);
+        fileId = R.raw.norwegian_words;
+        if (gottenId == R.id.radioEng){
+            fileId = R.raw.english_words;
+            numberOfLetters = 27;
+            for (int i = 26; i <29 ; i++) {
+                int id = getResources().getIdentifier("button"+i, "id", getPackageName());
+                Button letterBtn = (Button)findViewById(id);
+                letterBtn.setVisibility(View.INVISIBLE);
+            }
+            TextView winsTV = (TextView)findViewById(R.id.wins);
+            TextView lossTV = (TextView)findViewById(R.id.loss);
+            winsTV.setText(getResources().getString(R.string.wins_eng));
+            lossTV.setText(getResources().getString(R.string.loss_eng));
+            nextGameBtn.setText(getResources().getString(R.string.next_eng));
+        }
+    }
+
     private String selectRandomWord(){
         Random random = new Random();
         if (listOFWords.size() == 0){
@@ -105,7 +128,7 @@ public class GameActivity extends AppCompatActivity{
     int randomInt = random.nextInt(listOFWords.size());
     String word = listOFWords.get(randomInt);
         return word;
-}
+    }
 
     private void removeWordFromList(String word){
         listOFWords.remove(word);
@@ -183,6 +206,7 @@ public class GameActivity extends AppCompatActivity{
         int numbOfCurrentWins = Integer.parseInt(numberOfGameWins.getText().toString());
         numbOfCurrentWins ++;
         numberOfGameWins.setText("" + numbOfCurrentWins);
+        RESULT = 1;
         gameFinnished();
     }
 
@@ -191,6 +215,7 @@ public class GameActivity extends AppCompatActivity{
         numberOfCurrentLoss ++;
         numberOfGameLoss.setText("" + numberOfCurrentLoss);
         updateWordOfTheGameTV(true);
+        RESULT = 2;
         gameFinnished();
     }
 
@@ -200,18 +225,26 @@ public class GameActivity extends AppCompatActivity{
     }
 
     public void newGame(){
-        removeWordFromList(wordOfTheGame);
-        listOfGuessedLetters.clear();
-        setWordOfGameTV();
-        numberOfFailes = 0;
-        failedLettersTV.setText("");
-        for (int i = 0; i < numberOfLetters ; i++) {
-            int id = getResources().getIdentifier("button"+i, "id", getPackageName());
-            Button letterBtn = (Button)findViewById(id);
-            letterBtn.setVisibility(View.VISIBLE);
-            letterBtn.setEnabled(true);
+        if (isTwoPlayers){
+            Intent returnIntent = new Intent();
+            returnIntent.putExtra("result", RESULT);
+            setResult(RESULT_OK, returnIntent);
+            finish();
+        }else{
+            removeWordFromList(wordOfTheGame);
+            listOfGuessedLetters.clear();
+            setWordOfGameTV();
+            numberOfFailes = 0;
+            failedLettersTV.setText("");
+            for (int i = 0; i < numberOfLetters ; i++) {
+                int id = getResources().getIdentifier("button"+i, "id", getPackageName());
+                Button letterBtn = (Button)findViewById(id);
+                letterBtn.setVisibility(View.VISIBLE);
+                letterBtn.setEnabled(true);
+            }
+            background.setImageResource(backgrounds.getResourceId(numberOfFailes, 0));
         }
-        background.setImageResource(backgrounds.getResourceId(numberOfFailes, 0));
+
     }
 
     public void onNextGameBtnClick(View view){

@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">Hangman</string>
-    <string name="start_game">Start Game</string>
+
+    <string name="start_game_eng">Start Game</string>
+    <string name="start_game_nor">Start Spill</string>
+
+    <string name="twoPlayerStart_nor">2-spillere</string>
+    <string name="twoPlayerStart_eng">2-players</string>
+
 
     <string name="norsk">Norsk</string>
     <string name="english">English</string>
@@ -26,6 +32,15 @@
 
     <string name="next_nor">Neste ord</string>
     <string name="next_eng">Next word</string>
+
+    <string name="setWordDesc_nor">Skriv inn ordet den andre spilleren skal gjette, klikk deretter OK knappen</string>
+    <string name="setWordDesc_eng">Write the word you want the other player to guess, continue by clicking the OK button</string>
+
+    <string name="setWordInputPreset_nor">Ditt ord</string>
+    <string name="setWordInputPreset_eng">Your word</string>
+
+    <string name="writeHere_nor">Skriv her: </string>
+    <string name="writeHere_eng">Write here: </string>
 
     <string-array name="help">
         <item>@string/help_nor</item>

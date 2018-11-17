@@ -24,16 +24,15 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/startGameButton"
+        android:id="@+id/twoPlayerBtn"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginTop="88dp"
-        android:onClick="onStartClickBtn"
-        android:text="@string/start_game"
+        android:onClick="onTwoPlayerBtnClick"
+        android:text="@string/twoPlayerStart_nor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/startGameButton" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -44,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startGameButton">
+        app:layout_constraintTop_toBottomOf="@+id/twoPlayerBtn">
 
         <RadioButton
             android:id="@+id/radioNor"
@@ -52,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checked="true"
+            android:onClick="onNorwegianClick"
             android:text="@string/norsk" />
 
         <RadioButton
@@ -60,6 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checked="false"
+            android:onClick="onEnglishClick"
             android:text="@string/english" />
     </RadioGroup>
 
@@ -105,5 +106,17 @@
         android:onClick="changeGameMode"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <Button
+        android:id="@+id/startGameButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:onClick="onStartClickBtn"
+        android:text="@string/start_game_nor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </android.support.constraint.ConstraintLayout>

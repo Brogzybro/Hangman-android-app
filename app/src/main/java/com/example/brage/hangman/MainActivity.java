@@ -1,6 +1,5 @@
 package com.example.brage.hangman;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -49,7 +47,30 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("language", selectedId);
         intent.putExtra("gameMode", gameModeSelected);
+        intent.putExtra("twoPlayers", false);
         startActivity(intent);
+    }
+
+    public void onTwoPlayerBtnClick(View view){
+        int selectedId = radioGroup.getCheckedRadioButtonId();
+        Intent intent = new Intent(this, SetWordActivity.class);
+        intent.putExtra("language", selectedId);
+        intent.putExtra("gameMode", gameModeSelected);
+        startActivity(intent);
+    }
+
+    public void onEnglishClick(View view){
+        Button startBtn = (Button) findViewById(R.id.startGameButton);
+        startBtn.setText(getText(R.string.start_game_eng));
+        startBtn = (Button) findViewById(R.id.twoPlayerBtn);
+        startBtn.setText(getText(R.string.twoPlayerStart_eng));
+    }
+
+    public void onNorwegianClick(View view){
+        Button startBtn = (Button) findViewById(R.id.startGameButton);
+        startBtn.setText(getText(R.string.start_game_nor));
+        startBtn = (Button) findViewById(R.id.twoPlayerBtn);
+        startBtn.setText(getText(R.string.twoPlayerStart_nor));
     }
 
     public void onHelpBtnClick(View view){
