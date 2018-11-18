@@ -8,3 +8,6 @@ microwave
 toiletseat
 computer
 kitchen
+library
+clock
+lobster
