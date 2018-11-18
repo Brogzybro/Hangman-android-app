@@ -26,3 +26,6 @@ på X-en som da lukker appen og gir slipp på alle maskinvareressurser.
 Når applikasjonen leser inn ordene fra tekstfilene vil de bli lagt inn i en liste. Ordet som blir spillt blir valgt tilfeldig
 og etter ordet er spillt blir det fjernet fra listen, da kan ikke det ordet bli spillt to ganger med mindre du starter på nytt.
 Bakgrunnene som endrer seg er lagt til i en liste i strings, slik at det er lett å bytte mellom to ulike temaer.
+
+All kode og tegninger er skrivet og tegnet av Brage Halse Snarud.
+Kode er skrivet i Android Studio.
