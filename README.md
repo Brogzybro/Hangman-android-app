@@ -1,5 +1,7 @@
 # Hangman-android-app
-Hangman applikasjonen er laget for API 27+.
+Hangman applikasjonen er laget for API 27+ så applikasjonen kjører enkelt på en emulator eller en telefon med API 27+.
+Det er ingenting ekstra som må til for å kjøre applikasjonen.
+
 Applikasjonen består av en startskjerm der en kan velge mellom norsk og engelsk, hvilken type "Hangman" en vil spille,
 og om man vil spille 2-player eller en player. 
 
